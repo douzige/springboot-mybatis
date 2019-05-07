@@ -22,7 +22,7 @@ public class DruidConfig {
         return new DruidDataSource();
 
     }
-    //配置Druid 监控
+    /*配置Druid 监控*/
     @Bean
     public ServletRegistrationBean ststViveServlet(){
         ServletRegistrationBean  bean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");
@@ -34,7 +34,7 @@ public class DruidConfig {
         return bean;
 
       }
-    //2、配置一个web监控的filter
+    /*2、配置一个web监控的filter*/
     @Bean
     public FilterRegistrationBean webStatFilter(){
 

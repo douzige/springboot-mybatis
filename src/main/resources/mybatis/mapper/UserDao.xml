@@ -11,5 +11,30 @@
        WHERE  id = #{id}  LIMIT 1
    </select>
 
+    <select id="findUserAndPw"  resultType="com.chen.springboot.po.User">
+        select *
+        from op_user_info
+         where login_name=#{loginName}  and password=#{password} and status_flag=1
+    </select>
+
+    <delete id="deletUser" parameterType="int">
+        DELETE  from op_user_info WHERE id =#{id}
+    </delete>
+
+    <insert id="addUser" parameterType="com.chen.springboot.po.User">
+        <!--把自增主键的值映射到对象的id 中， order  表示执行的顺序
+        <selectKey keyProperty="id"  order="AFTER" resultType="integer">
+            SELECT  LAST_INSERT_ID()
+        </selectKey>-->
+        INSERT INTO op_user_info (`code`,`name`,`login_name`,`password`,`status`,`is_admin`,`status_flag`)
+        value(#{code},#{name},#{loginName},#{password},1,0,1)
+    </insert>
+
+    <update id="updateUser" parameterType="com.chen.springboot.po.User">
+        UPDATE  op_user_info
+        SET  `code`= #{code} , `name`=#{name}, login_name =#{loginName},password = #{password}
+        where   id = #{id}
+    </update>
+
 
 </mapper>
